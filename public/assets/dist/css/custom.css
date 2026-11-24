@@ -1,0 +1,247 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 6, 2017, 11:35:42 AM
+    Author     : Use
+*/
+
+
+/*YOUR CUSTOM STYLE STARTED IN HERE*/
+
+
+
+
+/**************** btns *********************/
+.btn-clear{
+	background:none; border:none;
+}
+
+
+
+/************** checkbox *****************/
+.checkbox-no-label{
+	margin:0;
+}
+.checkbox-no-label label{
+	padding: 0;
+}
+
+
+
+
+.header-function-wrapper{
+	margin-bottom: 15px;
+}
+.bottom-function-wrapper{
+	margin-top: 15px;
+}
+
+.panel-function{
+	border-bottom: 1px solid #ebedf2;
+}
+.panel-function-container{
+	padding:15px;
+}
+.panel-function-aux-right{
+	float: right;
+	text-align: right;
+}
+
+.panel-function-filter-wrapper{
+	
+}
+.panel-function-filter-list-wrapper{
+	display: flex;
+	width: 100%;
+	/*justify-content: space-between;*/
+	padding: 15px;
+	border-top: 1px solid #ebedf2;
+}
+.panel-function-filter-list-wrapper .filter-label{
+	width: 50px;
+}
+.panel-function-filter-list-wrapper .filter-list{
+	width: 100%; padding: 0 15px;
+}
+.filter-item{
+	display: inline-block; vertical-align: top;
+	margin-bottom: 5px; margin-right: 5px; padding: 5px;
+	background:rgba(0,0,0,.1);
+	font-size: 13px;
+}
+.filter-item i{
+	margin:0 4px;
+}
+.panel-function-filter-form{
+	border-top: 1px solid #ebedf2;
+}
+.panel-function-filter-form-inner{
+	padding: 15px;
+}
+.function-search-container{
+	display: inline-block; vertical-align: top;
+	width: 300px;
+}
+.data-view-select{
+	float: right;
+}
+
+
+.header-function-aux-wrapper{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin:10px 0;
+}
+
+
+
+
+.pagination{
+	margin:8px 0;
+}
+
+
+
+
+
+
+/******************* steps **********************/
+.steps-wrapper{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin:10px 0;
+}
+.steps-container{
+	/*width: 50%;*/
+}
+.steps-btn{
+	position: relative;
+	display: inline-block; vertical-align: top;
+	width: 80px;
+	text-align: center;
+}
+.steps-btn:after{
+	content: "";
+	position: absolute; top:15px; left: 54px;
+	display: block; vertical-align: middle;
+	width: 55px; height: 1px;
+	background: #777777;
+}
+.steps-btn:last-child:after{
+	display: none;
+}
+.steps-btn-icon{
+	display: inline-block; vertical-align: top; 
+	text-align: center;
+	width: 30px; height: 30px;
+	margin-bottom: 5px;
+	border: 1px solid #558B2F;
+	-webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%;
+	font-weight:700; line-height: 26px; color: #000;
+}
+.steps-btn-text{
+	padding: 5px;
+	font-size: 13px; color: #000;
+}
+.steps-btn.steps-btn-active .steps-btn-icon,
+.steps-btn.steps-btn-success .steps-btn-icon{
+	border: 1px solid #558B2F;
+	background: #558B2F;
+	color:#fff;
+}
+.steps-btn.steps-btn-active .steps-btn-text,
+.steps-btn.steps-btn-success .steps-btn-text{
+	color:#558B2F;
+}
+.steps-btn:hover .steps-btn-text{
+	color:#558B2F;
+}
+
+
+
+/*************** products ********************/
+.product-config-images-upload-wrapper{
+	width: 250px; margin: 10px 0;
+}
+.product-config-images-upload-wrapper .dropzone .dz-message{
+	margin:0;
+}
+.product-config-create-price-wrapper{
+	margin: 10px 0;
+}
+
+
+/****************** panels ******************/
+.panel-heading-custom{
+	display: flex;
+	justify-content: space-between;
+}
+.panel-header-inside-wrapper{
+	border-bottom:1px solid #ccc;
+}
+
+
+
+/******************** tables ************************/
+.table-product-list > tbody > tr > td{
+	vertical-align: top;
+}
+.data-thumb{
+	width: 40px;
+	text-align: center;
+}
+.data-thumb img{
+	width: 40px;
+}
+.data-check{
+	width: 30px;
+}
+
+
+
+
+
+
+
+
+
+/**************** helper ********************/
+.p-0{
+	padding:0;
+}
+.p-t-0{
+	padding-top: 0;
+}
+.p-b-0{
+	padding-bottom: 0;
+}
+.p-l-15{
+	padding-left: 15px;
+}
+.btn-h-36{
+	padding: 7px 12px;
+}
+.border-top{
+	border-top: 1px solid #ebedf2;
+}
+
+
+
+@media screen and (max-width: 980px){
+	.steps-wrapper{
+		display: block;
+	}
+	.steps-container, 
+	.steps-btns-container{
+		margin-bottom: 15px;
+		text-align: center;
+	}
+	.header-function-aux-wrapper{
+		display: block;
+	}
+}
