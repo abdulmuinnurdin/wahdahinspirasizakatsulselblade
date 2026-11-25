@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adminpage - Responsive Bootstrap Admin Template Dashboard</title>
+    <link rel="shortcut icon" href="{{ asset('assets/dist/img/ico/favicon.png') }}" type="image/x-icon">
+    <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/dist/css/component_ui.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/dist/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+        
+        <div class="login-wrapper">
+            <div class="container-center">
+                <div class="panel panel-bd">
+                    <div class="panel-heading">
+                        <div class="view-header">
+                            <div class="header-icon">
+                                <i class="pe-7s-unlock"></i>
+                            </div>
+                            <div class="header-title">
+                                <h3>Login</h3>
+                                <small><strong>Please enter your credentials to login.</strong></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form action="index.html" id="loginForm" novalidate>
+                             
+                            <div class="social">
+                                <strong>Sign in using social network:</strong><br>
+                                <div class="twitter_bg"><i class="fa fa-twitter"></i><a href="#" class="btn_1">Login Twitter</a></div>
+                                <div class="fb_bg"><i class="fa fa-facebook"></i><a href="#" class="btn_2">Login Facebook</a></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Username</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input id="username" type="text" class="form-control" name="email" placeholder="Username">
+                                </div>
+                                <span class="help-block small">Your unique username to app</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                    <input id="pass" type="password" class="form-control" name="password" placeholder="******">
+                                </div>
+                                <span class="help-block small">Your unique username to app</span>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary pull-right">Login</button>
+                                <div class="checkbox checkbox-success">
+                                    <input id="checkbox3" type="checkbox">
+                                    <label for="checkbox3">Keep me signed in</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="bottom_text">
+                    Don't have an account? <a href="{{ route('admin.register') }}">Sign Up</a><br>
+                    Remind <a href="{{ route('admin.forget_password') }}">Password</a>
+                </div>
+
+            </div>
+        </div>
+        
+        
+        <script src="{{ asset('assets/plugins/jQuery/jquery-1.12.4.min.js') }}"></script>
+        
+        <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    
+    <script src="{{ asset('assets/plugins/jQuery/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    
+</body>
+</html>
