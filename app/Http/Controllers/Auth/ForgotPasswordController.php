@@ -21,7 +21,10 @@ class ForgotPasswordController extends Controller
     |
     */
 
-    use SendsPasswordResetEmails;
+    use SendsPasswordResetEmails {
+        sendResetLinkResponse as private traitSendResetLinkResponse;
+        sendResetLinkFailedResponse as private traitSendResetLinkFailedResponse;
+    }
 
     /**
      * Header log: nama class pemicu, dipakai di setiap entry log.
@@ -46,7 +49,7 @@ class ForgotPasswordController extends Controller
             ['trace_id' => $traceId, 'email' => $request->input('email')]
         );
 
-        return parent::sendResetLinkResponse($request, $response);
+        return $this->traitSendResetLinkResponse($request, $response);
     }
 
     protected function sendResetLinkFailedResponse(Request $request, $response)
@@ -58,6 +61,6 @@ class ForgotPasswordController extends Controller
             ['trace_id' => $traceId, 'email' => $request->input('email')]
         );
 
-        return parent::sendResetLinkFailedResponse($request, $response);
+        return $this->traitSendResetLinkFailedResponse($request, $response);
     }
 }

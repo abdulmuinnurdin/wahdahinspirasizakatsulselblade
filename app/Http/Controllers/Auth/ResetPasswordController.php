@@ -21,7 +21,10 @@ class ResetPasswordController extends Controller
     |
     */
 
-    use ResetsPasswords;
+    use ResetsPasswords {
+        sendResetResponse as private traitSendResetResponse;
+        sendResetFailedResponse as private traitSendResetFailedResponse;
+    }
 
     /**
      * Header log: nama class pemicu, dipakai di setiap entry log.
@@ -53,7 +56,7 @@ class ResetPasswordController extends Controller
             ['trace_id' => $traceId, 'email' => $request->input('email')]
         );
 
-        return parent::sendResetResponse($request, $response);
+        return $this->traitSendResetResponse($request, $response);
     }
 
     protected function sendResetFailedResponse(Request $request, $response)
@@ -65,6 +68,6 @@ class ResetPasswordController extends Controller
             ['trace_id' => $traceId, 'email' => $request->input('email')]
         );
 
-        return parent::sendResetFailedResponse($request, $response);
+        return $this->traitSendResetFailedResponse($request, $response);
     }
 }

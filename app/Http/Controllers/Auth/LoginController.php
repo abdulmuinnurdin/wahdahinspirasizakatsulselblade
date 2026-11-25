@@ -21,7 +21,9 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        sendFailedLoginResponse as private traitSendFailedLoginResponse;
+    }
 
     /**
      * Header log: nama class pemicu, dipakai di setiap entry log.
@@ -74,7 +76,7 @@ class LoginController extends Controller
             ['trace_id' => $traceId, 'email' => $request->input($this->username())]
         );
 
-        return parent::sendFailedLoginResponse($request);
+        return $this->traitSendFailedLoginResponse($request);
     }
 
     protected function loggedOut(Request $request)
