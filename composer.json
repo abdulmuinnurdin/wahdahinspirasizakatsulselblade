@@ -12,7 +12,9 @@
         "php": "^8.3",
         "laravel/framework": "^13.17",
         "laravel/reverb": "^1.14",
+        "laravel/sanctum": "^4.5",
         "laravel/tinker": "^3.0",
+        "laravel/ui": "^4.6",
         "maatwebsite/excel": "^4.0",
         "spatie/laravel-permission": "^8.5"
     },
