@@ -1,8 +1,17 @@
 <div class="sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
+                    @auth
+                    <div class="sidebar-user-panel" style="padding: 15px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <a href="{{ route('profile.edit') }}" title="Update Profile" style="display: block; color: inherit;">
+                            <img src="{{ asset('assets/dist/img/avatar.png') }}" class="img-circle" alt="{{ auth()->user()->name }}" style="width: 50px; height: 50px;">
+                            <div style="margin-top: 8px; font-weight: 600;">{{ auth()->user()->name }}</div>
+                            <small>{{ auth()->user()->email }}</small>
+                        </a>
+                    </div>
+                    @endauth
                     <ul class="nav" id="side-menu">
                         <li class="nav-heading "> <span>Main Navigation&nbsp;&nbsp;&nbsp;&nbsp;------</span></li>
-                        <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}" class="material-ripple"><i class="material-icons">home</i> Dashboard</a></li>
+                        <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard') }}" class="material-ripple"><i class="material-icons">home</i> Dashboard</a></li>
                         <li>
                             <a href="#" class="material-ripple"><i class="material-icons">bubble_chart</i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -111,7 +120,7 @@
                             <ul class="nav nav-second-level">
                                 <li class="{{ request()->routeIs('admin.login') ? 'active' : '' }}"><a href="{{ route('admin.login') }}">Login</a></li>
                                 <li class="{{ request()->routeIs('admin.register') ? 'active' : '' }}"><a href="{{ route('admin.register') }}">Register</a></li>
-                                <li class="{{ request()->routeIs('admin.profile') ? 'active' : '' }}"><a href="{{ route('admin.profile') }}">Profile</a></li>
+                                <li class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}"><a href="{{ route('profile.edit') }}">Profile</a></li>
                                 <li class="{{ request()->routeIs('admin.forget_password') ? 'active' : '' }}"><a href="{{ route('admin.forget_password') }}">Forget password</a></li>
                                 <li class="{{ request()->routeIs('admin.lockscreen') ? 'active' : '' }}"><a href="{{ route('admin.lockscreen') }}">Lockscreen</a></li>
                                 <li class="{{ request()->routeIs('admin.404') ? 'active' : '' }}"><a href="{{ route('admin.404') }}">404 Error</a></li>

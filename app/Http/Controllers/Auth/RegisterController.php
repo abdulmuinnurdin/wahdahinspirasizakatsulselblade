@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Support\TraceId;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -24,11 +27,25 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
+     * Header log: nama class pemicu, dipakai di setiap entry log.
+     *
+     * @var string
+     */
+    protected $headerLog = '[RegisterController] => ';
+
+    /**
+     * Channel log yang dipakai controller ini.
+     *
+     * @var string
+     */
+    protected $channelLog = 'auth';
+
+    /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -38,6 +55,16 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        $traceId = TraceId::current();
+
+        Log::channel($this->channelLog)->info(
+            $this->headerLog.'REGISTER => '.$traceId.' => registered : SUCCESS',
+            ['trace_id' => $traceId, 'user_id' => $user->id, 'email' => $user->email]
+        );
     }
 
     /**

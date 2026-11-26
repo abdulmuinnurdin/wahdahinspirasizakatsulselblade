@@ -10,6 +10,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+});
+
 // Admin UI template pages (converted from public/*.html into resources/views/admin/*.blade.php)
 Route::view('/admin-ui/404', 'admin.404')->name('admin.404');
 Route::view('/admin-ui/505', 'admin.505')->name('admin.505');

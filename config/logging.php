@@ -135,6 +135,61 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'cron' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/cron/cron.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 7,
+            'tap' => [\App\Logging\TraceIdTap::class],
+        ],
+
+        'frontend' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/frontend/frontend.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 30,
+            'tap' => [\App\Logging\TraceIdTap::class],
+        ],
+
+        'urgent' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/urgent/urgent.log'),
+            'level' => 'error',
+            'tap' => [\App\Logging\TraceIdTap::class],
+        ],
+
+        'api' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/api/api.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 30,
+            'tap' => [\App\Logging\TraceIdTap::class],
+        ],
+
+        'queue' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/queue/queue.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 7,
+            'tap' => [\App\Logging\TraceIdTap::class],
+        ],
+
+        'auth' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/auth/auth.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 90,
+            'tap' => [\App\Logging\TraceIdTap::class],
+        ],
+
+        'database' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/database/database.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 3,
+            'tap' => [\App\Logging\TraceIdTap::class],
+        ],
+
     ],
 
 ];
