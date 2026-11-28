@@ -233,6 +233,7 @@ Verifikasi urutan: `included` harus terisi setelah `toArray()` berjalan. Pastika
 | fields | `fields[articles]=title,body` | Sparse fieldset, sudah ditangani base resource. |
 | sort | `sort=-created_at,title` | Whitelist kolom. Jangan pernah pass input mentah ke `orderBy`. |
 | filter | `filter[status]=published` | Whitelist filter. Validasi nilainya. |
+| filter (search) | `filter[search]=indo` | Pencarian multi-kolom (OR LIKE), lihat pola di bawah. |
 | page | `page[number]=2&page[size]=20` | Lihat catatan di bawah. |
 
 Spec meminta server menolak parameter yang tidak dikenali dengan `400 Bad Request`. Implementasi di FormRequest atau middleware.
@@ -252,16 +253,40 @@ private function applySort(Builder $query, Request $request, array $allowed): vo
 }
 ```
 
+### Pencarian multi-kolom (`filter[search]`)
+
+Untuk resource yang butuh pencarian bebas di 1+ kolom teks (nama, code, dsb), gunakan key filter `search` dan OR LIKE di kolom yang relevan — jangan buka filter per-kolom terpisah untuk kebutuhan ini (`filter[name]`, `filter[code]`, dst berpisah) kalau yang diinginkan adalah satu kotak pencarian.
+
+```php
+if (array_key_exists('search', $filters) && filled($filters['search'])) {
+    $search = $filters['search'];
+
+    $query->where(function ($query) use ($search) {
+        $query->where('name', 'like', "%{$search}%")
+            ->orWhere('code', 'like', "%{$search}%");
+    });
+}
+```
+
+Contoh nyata: `CountryService::list()` (`app/Http/Services/CountryService.php`).
+
 ### Pagination: PERINGATAN KONFLIK
 
 Laravel `paginate()` membaca query `page` sebagai integer. Format JSON:API `page[number]` menghasilkan array, sehingga bisa rusak jika dibiarkan default. Solusi: baca `page.number` dan `page.size` secara eksplisit, lalu pass ke `paginate()`.
 
+Default dan batas maksimum `page.size` **wajib diambil dari config**, bukan angka literal di controller — supaya nilai yang sama bisa dipakai ulang oleh controller halaman Blade (lihat `config/masterdata.php` dan bagian "Config per fitur" di [[msd-laravel-folder]]):
+
 ```php
-$size = min($request->integer('page.size', 15), 100);
+$size = min(
+    $request->integer('page.size', config('masterdata.page_size.countries')),
+    config('masterdata.max_page_size'),
+);
 $page = max($request->integer('page.number', 1), 1);
 
 $paginator = $query->paginate($size, ['*'], 'page', $page);
 ```
+
+Contoh nyata: `CountryController::index()` (`app/Http/Controllers/Api/V1/MasterData/CountryController.php`).
 
 Bangun link secara manual, karena `$paginator->url()` menghasilkan `?page=N`, bukan `page[number]=N`:
 
